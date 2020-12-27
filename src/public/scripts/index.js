@@ -45,53 +45,59 @@ const App = () => {
   );
 
   return (
-    <div>
-      <h1>Open Peeps API Demo</h1>
-      <div>
-        <div className="picker">
-          <h2>Menu</h2>
-          <h3>Faces</h3>
-          {faces.map((f) => {
-            return (
-              <label key={f}>
-                <input
-                  checked={f === selectedFace}
-                  label={f}
-                  type="radio"
-                  name="face"
-                  value={f}
-                  onChange={handleFaceSelect}
-                />
-                {f}
-              </label>
-            );
-          })}
-          <h3>Heads</h3>
-          {heads.map((h) => {
-            return (
-              <label key={h}>
-                <input
-                  checked={h === selectedHead}
-                  label={h}
-                  type="radio"
-                  name="head"
-                  value={h}
-                  onChange={handleHeadSelect}
-                />
-                {h}
-              </label>
-            );
-          })}
+    <div className="container">
+      <div className="app-container">
+        <h1 className="slant-background">Open Peeps</h1>
+        <div className="main-container">
+          <div className="picker">
+            <h3 className="slant-background">Faces</h3>
+            {faces.map((f) => {
+              return (
+                <label key={f}>
+                  <input
+                    checked={f === selectedFace}
+                    label={f}
+                    type="radio"
+                    name="face"
+                    value={f}
+                    onChange={handleFaceSelect}
+                  />
+                  {f}
+                </label>
+              );
+            })}
+            <h3 className="slant-background">Heads</h3>
+            {heads.map((h) => {
+              return (
+                <label key={h}>
+                  <input
+                    checked={h === selectedHead}
+                    label={h}
+                    type="radio"
+                    name="head"
+                    value={h}
+                    onChange={handleHeadSelect}
+                  />
+                  {h}
+                </label>
+              );
+            })}
+          </div>
+          <div className="preview">
+            {selectedFace !== "" && selectedHead !== "" && (
+              <img
+                src={`/api/images?head=${selectedHead}&face=${selectedFace}`}
+                alt={`preview of ${selectedHead} head and ${selectedFace} face`}
+              />
+            )}
+          </div>
         </div>
-        <div className="preview">
-          <h2>Preview</h2>
-          {selectedFace !== "" && selectedHead !== "" && (
-            <img
-              src={`/api/images?head=${selectedHead}&face=${selectedFace}`}
-              alt={`preview of ${selectedHead} head and ${selectedFace} face`}
-            />
-          )}
-        </div>
+      </div>
+      <div className="shoutout">
+        <p className="text-md">Open Peeps</p>
+        <a target="_blank" href="https://www.openpeeps.com/">
+          <button>Visit Open Peeps</button>
+        </a>
       </div>
     </div>
   );
