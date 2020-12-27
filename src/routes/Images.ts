@@ -2,13 +2,21 @@ import { Router } from "express";
 import Jimp from "jimp";
 import path from "path";
 import StatusCodes from "http-status-codes";
-
-const { BAD_REQUEST } = StatusCodes;
+import fs from "fs";
+const { INTERNAL_SERVER_ERROR, BAD_REQUEST, OK } = StatusCodes;
 
 const router = Router();
+const imagePath = path.join(__dirname, "../public/images/");
+
+const removePNGExtension = (s: string) => s.slice(0, s.length - 4);
+
+router.get("/info", function (req, res, next) {
+  const faces = fs.readdirSync(imagePath + "faces").map(removePNGExtension);
+  const heads = fs.readdirSync(imagePath + "heads").map(removePNGExtension);
+  res.json({ faces, heads });
+});
 
 router.get("/", function (req, res, next) {
-  const imagePath = path.join(__dirname, "../public/images/");
   const requestedHead = req.query.head;
   const requestedFace = req.query.face;
 
