@@ -1,11 +1,10 @@
 
-@import url('https://fonts.googleapis.com/css?family=Chivo:400,900');
 
 html {font-size: 100%;} /*16px*/
 
 body {
   background: white;
-  font-family: 'Chivo', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 400;
   line-height: 1.75;
   color: #000000;
@@ -15,7 +14,7 @@ p, label {margin-bottom: 1rem;}
 
 h1, h2, h3, h4, h5 {
   margin: 3rem 0 1.38rem;
-  font-family: 'Chivo', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 900;
   line-height: 1.3;
 }
@@ -38,73 +37,4 @@ small, .text_small {font-size: 0.8rem;}
 html, body{
   padding: 0; 
   margin: 0; 
-}
-.shoutout{
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-family: 'Times New Roman', Times, serif;
-  color: white; 
-  padding: 0.8rem;
-  writing-mode: vertical-rl;
-
-
-  background-color: red;
-}
-.shoutout button {
-  transform: rotate(89deg);
-  margin-bottom: 60px;
-
-}
-.container{
-  height: 100vh; 
-  display: flex;
-  flex-direction: row;
-
-}
-
-.app-container{
-  flex: 1; 
-  padding: 1.563rem; 
-}
-.slant-background{
-  color: white; 
-  transform: skew(-5deg);
-  background-color: blue; 
-  box-shadow: 5px 10px lawngreen;
-}
-
-h1{
-  text-align: center;
-}
-
-.picker label {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  display: block;
-  border-bottom: 1px;
-}
-
-.main-container{
-  display: flex;
-  flex-direction: row;
-
-}
-
-.preview {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-}
-.preview h2{
-  color: white;
-  padding: 8px; 
-}
-
-.preview img {
-  align-self: center;
-  width: 50%;
-  min-width: 25%;
-  max-width: 506px;
 }
