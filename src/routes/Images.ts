@@ -17,8 +17,12 @@ router.get("/info", function (req, res, next) {
 });
 
 router.get("/", function (req, res, next) {
-  const requestedHead = req.query.head;
-  const requestedFace = req.query.face;
+  const requestedHead = req.query.head?.toString() ?? "";
+  const requestedFace = req.query.face?.toString() ?? "";
+
+  if (!requestedFace && !requestedHead) {
+    res.sendStatus(BAD_REQUEST);
+  }
 
   const headName = `heads/${requestedHead}.png`;
   const faceName = `faces/${requestedFace}.png`;
@@ -39,7 +43,7 @@ router.get("/", function (req, res, next) {
             // Write Combined Image file
             .writeAsync(`${imagePath}/generated/${fileName}`)
             .then(() => {
-              var options = {
+              const options = {
                 root: path.join(__dirname, "../public/images/generated/"),
                 dotfiles: "deny",
                 headers: {
