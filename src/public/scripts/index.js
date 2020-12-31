@@ -5,7 +5,7 @@ const App = () => {
   const [faces, setFaces] = React.useState([]);
   const [selectedHead, setSelectedHead] = React.useState("");
   const [selectedFace, setSelectedFace] = React.useState("");
-
+  const [isShowingCopyAlert, setIsShowingCopyAlert] = React.useState(false);
   const getAvailableOptions = async () => {
     const availableOptions = await fetch("/api/images/info").then((r) =>
       r.json()
@@ -32,7 +32,18 @@ const App = () => {
     }
   }, [faces]);
 
-  function fallbackCopyTextToClipboard(text) {
+  React.useEffect(() => {
+    if (isShowingCopyAlert) {
+      const timer = setTimeout(() => {
+        setIsShowingCopyAlert(false);
+      }, 3000);
+      return () => {
+        window.clearTimeout(timer);
+      };
+    }
+  }, [isShowingCopyAlert]);
+
+  const fallbackCopyTextToClipboard = (text) => {
     var textArea = document.createElement("textarea");
     textArea.value = text;
 
@@ -54,8 +65,8 @@ const App = () => {
     }
 
     document.body.removeChild(textArea);
-  }
-  function copyTextToClipboard(text) {
+  };
+  const copyTextToClipboard = (text) => {
     if (!navigator.clipboard) {
       fallbackCopyTextToClipboard(text);
       return;
@@ -66,7 +77,7 @@ const App = () => {
         console.error("Async: Could not copy text: ", err);
       }
     );
-  }
+  };
 
   const handleFaceSelect = React.useCallback(
     (e) => {
@@ -85,6 +96,8 @@ const App = () => {
     copyTextToClipboard(
       `http://localhost:3000/api/images/?face=${selectedFace}&head=${selectedHead}`
     );
+
+    setIsShowingCopyAlert(true);
   }, [selectedFace, selectedHead]);
 
   return (
@@ -94,8 +107,7 @@ const App = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        width: "70%",
-        margin: "auto",
+        padding: "1rem",
       }}
     >
       <div
@@ -124,7 +136,6 @@ const App = () => {
           style={{
             width: 200,
             height: 200,
-            backgroundColor: "red",
             borderRadius: 25,
             padding: 10,
           }}
@@ -137,13 +148,27 @@ const App = () => {
             />
           )}
         </div>
-        <div>
-          <pre
-            style={{ display: "inline" }}
-          >{`http://localhost:3000/api/images/?face=`}</pre>
-          <mark>{selectedFace}</mark>
-          <pre style={{ display: "inline" }}>{`&head=`}</pre>
-          <mark>{selectedHead}</mark>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            paddingTop: "1rem",
+            paddingBottom: "1rem",
+          }}
+        >
+          <div
+            style={{
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+          >
+            <pre
+              style={{ display: "inline" }}
+            >{`http://localhost:3000/api/images/?face=`}</pre>
+            <mark>{selectedFace}</mark>
+            <pre style={{ display: "inline" }}>{`&head=`}</pre>
+            <mark>{selectedHead}</mark>
+          </div>
           <button onClick={handleCopy}>Copy</button>
         </div>
       </div>
@@ -193,6 +218,29 @@ const App = () => {
           </ul>
         </div>
       </div>
+      {isShowingCopyAlert && (
+        <div
+          style={{
+            backgroundColor: "salmon",
+            display: "flex",
+            flexDirection: "row",
+            position: "absolute",
+            left: 20,
+            bottom: 20,
+            borderRadius: 25,
+            padding: 10,
+          }}
+        >
+          <img
+            style={{ width: 150 }}
+            src="images/jeeves.png"
+            alt="A older man that looks like a butler"
+          />
+          <p style={{ fontFamily: "Times New Roman" }}>
+            Sir, your text has been copied.
+          </p>
+        </div>
+      )}
     </div>
   );
 };
