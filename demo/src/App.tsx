@@ -1,15 +1,17 @@
-"use strict";
+import React from "react";
 
 const App = () => {
-  const [heads, setHeads] = React.useState([]);
-  const [faces, setFaces] = React.useState([]);
+  const serverRoot = "http://localhost:8081";
+
+  const [heads, setHeads] = React.useState<string[]>([]);
+  const [faces, setFaces] = React.useState<string[]>([]);
   const [selectedHead, setSelectedHead] = React.useState("");
   const [selectedFace, setSelectedFace] = React.useState("");
   const [isShowingCopyAlert, setIsShowingCopyAlert] = React.useState(false);
   const getAvailableOptions = async () => {
-    const availableOptions = await fetch("/api/images/info").then((r) =>
-      r.json()
-    );
+    const availableOptions = await fetch(
+      `${serverRoot}/api/images/info`
+    ).then((r) => r.json());
 
     return availableOptions;
   };
@@ -43,7 +45,7 @@ const App = () => {
     }
   }, [isShowingCopyAlert]);
 
-  const fallbackCopyTextToClipboard = (text) => {
+  const fallbackCopyTextToClipboard = (text: string) => {
     var textArea = document.createElement("textarea");
     textArea.value = text;
 
@@ -66,7 +68,7 @@ const App = () => {
 
     document.body.removeChild(textArea);
   };
-  const copyTextToClipboard = (text) => {
+  const copyTextToClipboard = (text: string) => {
     if (!navigator.clipboard) {
       fallbackCopyTextToClipboard(text);
       return;
@@ -94,7 +96,7 @@ const App = () => {
 
   const handleCopy = React.useCallback(() => {
     copyTextToClipboard(
-      `http://localhost:3000/api/images/?face=${selectedFace}&head=${selectedHead}`
+      `${serverRoot}/api/images/?face=${selectedFace}&head=${selectedHead}`
     );
 
     setIsShowingCopyAlert(true);
@@ -143,7 +145,7 @@ const App = () => {
           {selectedFace && selectedHead && (
             <img
               style={{ width: "100%" }}
-              src={`http://localhost:3000/api/images/?face=${selectedFace}&head=${selectedHead}`}
+              src={`${serverRoot}/api/images/?face=${selectedFace}&head=${selectedHead}`}
               alt={`Open Peeps ${selectedHead} head with ${selectedFace} face`}
             />
           )}
@@ -164,7 +166,7 @@ const App = () => {
           >
             <pre
               style={{ display: "inline" }}
-            >{`http://localhost:3000/api/images/?face=`}</pre>
+            >{`${serverRoot}/api/images/?face=`}</pre>
             <mark>{selectedFace}</mark>
             <pre style={{ display: "inline" }}>{`&head=`}</pre>
             <mark>{selectedHead}</mark>
@@ -188,7 +190,6 @@ const App = () => {
               <label key={f}>
                 <input
                   checked={f === selectedFace}
-                  label={f}
                   type="radio"
                   name="face"
                   value={f}
@@ -206,7 +207,6 @@ const App = () => {
               <label key={f}>
                 <input
                   checked={f === selectedHead}
-                  label={f}
                   type="radio"
                   name="head"
                   value={f}
@@ -244,6 +244,4 @@ const App = () => {
     </div>
   );
 };
-
-const domContainer = document.querySelector("#app");
-ReactDOM.render(React.createElement(App), domContainer);
+export default App;
