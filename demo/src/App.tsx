@@ -1,7 +1,10 @@
 import React from "react";
 
 const App = () => {
-  const serverRoot = "http://localhost:8081";
+  const serverRoot =
+    process.env.NODE_ENV !== "production"
+      ? "http://localhost:8081"
+      : "http://harveythegoodboy.xyz/peeps";
 
   const [heads, setHeads] = React.useState<string[]>([]);
   const [faces, setFaces] = React.useState<string[]>([]);

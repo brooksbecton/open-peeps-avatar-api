@@ -2,3 +2,4 @@ node_modules
 dist
 server/src/public/images/generated/
 server/jet-logger.log
+demo/.eslintcache
