@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/open-peeps-avatar-api/static/js/main.bac5ae7f.chunk.js",
-    "main.js.map": "/open-peeps-avatar-api/static/js/main.bac5ae7f.chunk.js.map",
+    "main.js": "/open-peeps-avatar-api/static/js/main.4b5c7523.chunk.js",
+    "main.js.map": "/open-peeps-avatar-api/static/js/main.4b5c7523.chunk.js.map",
     "runtime-main.js": "/open-peeps-avatar-api/static/js/runtime-main.e4dbf2ab.js",
     "runtime-main.js.map": "/open-peeps-avatar-api/static/js/runtime-main.e4dbf2ab.js.map",
     "static/js/2.4997093e.chunk.js": "/open-peeps-avatar-api/static/js/2.4997093e.chunk.js",
@@ -14,6 +14,6 @@
   "entrypoints": [
     "static/js/runtime-main.e4dbf2ab.js",
     "static/js/2.4997093e.chunk.js",
-    "static/js/main.bac5ae7f.chunk.js"
+    "static/js/main.4b5c7523.chunk.js"
   ]
 }
