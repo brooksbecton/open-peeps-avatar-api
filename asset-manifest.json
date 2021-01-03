@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/open-peeps-avatar-api/static/js/main.bac5ae7f.chunk.js",
+    "main.js.map": "/open-peeps-avatar-api/static/js/main.bac5ae7f.chunk.js.map",
+    "runtime-main.js": "/open-peeps-avatar-api/static/js/runtime-main.e4dbf2ab.js",
+    "runtime-main.js.map": "/open-peeps-avatar-api/static/js/runtime-main.e4dbf2ab.js.map",
+    "static/js/2.4997093e.chunk.js": "/open-peeps-avatar-api/static/js/2.4997093e.chunk.js",
+    "static/js/2.4997093e.chunk.js.map": "/open-peeps-avatar-api/static/js/2.4997093e.chunk.js.map",
+    "static/js/3.39a3df8c.chunk.js": "/open-peeps-avatar-api/static/js/3.39a3df8c.chunk.js",
+    "static/js/3.39a3df8c.chunk.js.map": "/open-peeps-avatar-api/static/js/3.39a3df8c.chunk.js.map",
+    "index.html": "/open-peeps-avatar-api/index.html",
+    "static/js/2.4997093e.chunk.js.LICENSE.txt": "/open-peeps-avatar-api/static/js/2.4997093e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e4dbf2ab.js",
+    "static/js/2.4997093e.chunk.js",
+    "static/js/main.bac5ae7f.chunk.js"
+  ]
+}
