@@ -4,7 +4,7 @@ const App = () => {
   const serverRoot =
     process.env.NODE_ENV !== "production"
       ? "http://localhost:8081"
-      : "http://harveythegoodboy.xyz/peeps";
+      : "https://open-peeps.harveythegoodboy.xyz";
 
   const [heads, setHeads] = React.useState<string[]>([]);
   const [faces, setFaces] = React.useState<string[]>([]);
